@@ -63,7 +63,7 @@ hi DiagnosticVirtualTextWarn  guibg=#2a2e2f guifg=#eba0ac gui=italic cterm=itali
 hi DiagnosticVirtualTextInfo  guibg=#2a2e2f guifg=#89b4fa gui=italic cterm=italic
 hi DiagnosticVirtualTextHint  guibg=#2a2e2f guifg=#16a085 gui=italic cterm=italic
 
-hi Comment      guibg=NONE guifg=#7f8c8d gui=italic cterm=italic
+hi Comment      guibg=NONE guifg=#9399b2 gui=italic cterm=italic
 hi Constant     guibg=NONE guifg=#cba6f7 gui=NONE cterm=NONE
 hi String       guibg=NONE guifg=#A6E3A1 gui=NONE cterm=NONE
 hi Character    guibg=NONE guifg=#A6E3A1 gui=NONE cterm=NONE

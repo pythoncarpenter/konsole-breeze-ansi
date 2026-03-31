@@ -6,7 +6,7 @@ end
 
 function M.apply()
   -- Treesitter
-  set("@comment", { fg = "#7f8c8d", italic = true })
+  set("@comment", { fg = "#9399B2", italic = true })
   set("@string", { fg = "#A6E3A1" })
   set("@string.regex", { fg = "#1abc9c" })
   set("@number", { fg = "#FAB387" })

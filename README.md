@@ -1,43 +1,41 @@
 # konsole-breeze-ansi
 
-Konsole Breeze ANSI-fidelity colorscheme for Neovim.
+Breeze-inspired semantic colorscheme for Neovim with a dark Breeze-like background.
 
-## Goals
+## Semantic Palette
 
-- Match Konsole's built-in Breeze ANSI palette exactly
-- Use the Konsole Breeze background and foreground, not pure black
-- Cover:
-  - classic Vim highlight groups
-  - Treesitter captures
-  - LSP semantic tokens
-
-## codex-like string text
-
-- codex-like string text: strings use `#A6E3A1` for easier-to-read, more eye-friendly text.
+- `action_label` `#3DAEE9` (breeze blue)
+- `info_blue` `#89B4FA` (light blue)
+- `command_name` `#CBA6F7` (lavender)
+- `path` `#1ABC9C` (breeze teal)
+- `string` `#A6E3A1` (mint frost)
+- `number` `#FAB387` (soft orange)
+- `text` `#CDD6F4` (dirty white)
+- `warning` `#EBA0AC` (pinky brick red)
 
 ## Palette
 
 - Background: `#232627`
-- Foreground: `#fcfcfc`
+- Foreground: `#cdd6f4`
 
 ANSI 0-15:
 
 - `#232627`
-- `#ed1515`
-- `#11d116`
-- `#f67400`
-- `#1d99f3`
-- `#9b59b6`
-- `#1abc9c`
-- `#fcfcfc`
-- `#7f8c8d`
-- `#c0392b`
-- `#1cdc9a`
-- `#fdbc4b`
+- `#eba0ac`
+- `#a6e3a1`
+- `#fab387`
 - `#3daee9`
-- `#8e44ad`
+- `#cba6f7`
+- `#1abc9c`
+- `#cdd6f4`
+- `#7f8c8d`
+- `#eba0ac`
+- `#a6e3a1`
+- `#fab387`
+- `#89b4fa`
+- `#cba6f7`
 - `#16a085`
-- `#ffffff`
+- `#cdd6f4`
 
 ## lazy.nvim
 

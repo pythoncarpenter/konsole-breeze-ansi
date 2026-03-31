@@ -1,6 +1,6 @@
 # konsole-breeze-ansi
 
-Strict Konsole Breeze ANSI-fidelity colorscheme for Neovim.
+Konsole Breeze ANSI-fidelity colorscheme for Neovim.
 
 ## Goals
 
@@ -10,6 +10,10 @@ Strict Konsole Breeze ANSI-fidelity colorscheme for Neovim.
   - classic Vim highlight groups
   - Treesitter captures
   - LSP semantic tokens
+
+## codex-like string text
+
+- codex-like string text: strings use `#A6E3A1` for easier-to-read, more eye-friendly text.
 
 ## Palette
 

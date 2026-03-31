@@ -65,8 +65,8 @@ hi DiagnosticVirtualTextHint  guibg=#2a2e2f guifg=#16a085 gui=italic cterm=itali
 
 hi Comment      guibg=NONE guifg=#7f8c8d gui=italic cterm=italic
 hi Constant     guibg=NONE guifg=#9b59b6 gui=NONE cterm=NONE
-hi String       guibg=NONE guifg=#1cdc9a gui=NONE cterm=NONE
-hi Character    guibg=NONE guifg=#1cdc9a gui=NONE cterm=NONE
+hi String       guibg=NONE guifg=#A6E3A1 gui=NONE cterm=NONE
+hi Character    guibg=NONE guifg=#A6E3A1 gui=NONE cterm=NONE
 hi Number       guibg=NONE guifg=#8e44ad gui=NONE cterm=NONE
 hi Boolean      guibg=NONE guifg=#8e44ad gui=NONE cterm=NONE
 hi Float        guibg=NONE guifg=#8e44ad gui=NONE cterm=NONE

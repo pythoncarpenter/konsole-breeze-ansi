@@ -2,6 +2,10 @@
 
 Breeze-inspired semantic colorscheme for Neovim with a dark Breeze-like background.
 
+## Screenshot
+
+![Python variable coloring preview](assets/screenshots/python-variable-coloring.png)
+
 ## Semantic Palette
 
 - `action_label` `#3DAEE9` (breeze blue)

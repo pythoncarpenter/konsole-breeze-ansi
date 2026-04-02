@@ -267,6 +267,41 @@ local LOOP_CHILD_HINTS = {
   "initializer",
   "update",
 }
+local BODY_FIELD_NAMES = {
+  "body",
+  "consequence",
+  "alternative",
+  "else",
+  "then",
+  "block",
+  "statement",
+  "statements",
+  "suite",
+  "cases",
+  "case",
+}
+local BODY_CHILD_HINTS = {
+  "body",
+  "consequence",
+  "alternative",
+  "else",
+  "then",
+  "block",
+  "statement",
+  "suite",
+}
+
+local function is_control_header_context(node, ancestor)
+  if in_field_subtree(node, ancestor, BODY_FIELD_NAMES) then
+    return false
+  end
+  for child in ancestor:iter_children() do
+    if node_type_has_any(child:type(), BODY_CHILD_HINTS) and is_descendant(node, child) then
+      return false
+    end
+  end
+  return true
+end
 
 local function is_conditional_context(node)
   local current = node:parent()
@@ -281,6 +316,9 @@ local function is_conditional_context(node)
           return true
         end
       end
+      if is_control_header_context(node, current) then
+        return true
+      end
     end
     if node_type_has_any(t, CONDITIONAL_NODE_HINTS) then
       if in_field_subtree(node, current, CONDITIONAL_FIELD_NAMES) then
@@ -290,6 +328,9 @@ local function is_conditional_context(node)
         if node_type_has_any(child:type(), CONDITIONAL_CHILD_HINTS) and is_descendant(node, child) then
           return true
         end
+      end
+      if is_control_header_context(node, current) then
+        return true
       end
     end
     current = current:parent()
@@ -329,22 +370,26 @@ local function apply_identifier_read_overrides(bufnr)
   end
 
   local function walk(node)
-    if is_identifier_node(node) and not is_definition_target(node) and not is_function_symbol(node) then
+    if is_identifier_node(node) and not is_function_symbol(node) then
       local sr, sc, er, ec = node:range()
       if not (sr == er and sc == ec) then
-        local group = "KonsoleBreezeReadUse"
-        if is_conditional_context(node) or is_call_argument_context(node) then
-          group = "KonsoleBreezeDynamicRead"
-        end
+        local in_dynamic_context = is_conditional_context(node) or is_call_argument_context(node)
+        local group = nil
         if is_string_context(node) then
           group = "KonsoleBreezeStringVariable"
+        elseif in_dynamic_context then
+          group = "KonsoleBreezeDynamicRead"
+        elseif not is_definition_target(node) then
+          group = "KonsoleBreezeReadUse"
         end
-        vim.api.nvim_buf_set_extmark(bufnr, NS, sr, sc, {
-          end_row = er,
-          end_col = ec,
-          hl_group = group,
-          priority = 4050,
-        })
+        if group then
+          vim.api.nvim_buf_set_extmark(bufnr, NS, sr, sc, {
+            end_row = er,
+            end_col = ec,
+            hl_group = group,
+            priority = 4050,
+          })
+        end
       end
     end
 

@@ -22,9 +22,9 @@ This means: LSP semantic tokens classify first when available, then Treesitter a
 
 ## Contextual Rules (Cross-Language)
 
-- Variables on assignment/declaration definition targets (left side/write side) are rose.
+- Variables on assignment/declaration definition targets (left side/write side) are rose, except loop-header variables.
 - Variables used as reads are yellow-green.
-- Reads in conditional tests and call argument positions are light brown.
+- Variables in loop headers, conditional tests, and call argument positions are light brown.
 - Variables inside string/template/interpolation scopes use yellow-green.
 - Functions and methods are lavender.
 - Class/type/interface/enum/struct definitions are forced to lavender.

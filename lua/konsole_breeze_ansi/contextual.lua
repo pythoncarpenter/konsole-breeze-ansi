@@ -173,8 +173,6 @@ local function is_definition_target(node)
       "typedef",
       "module",
       "namespace",
-      "for_statement",
-      "for_in_clause",
       "catch_clause",
       "parameter",
       "lambda",
@@ -237,11 +235,53 @@ local CONDITIONAL_NODE_HINTS = { "if", "while", "for", "conditional", "match", "
 local CONDITIONAL_FIELD_NAMES = { "condition", "test", "predicate", "guard", "expression", "value" }
 local CONDITIONAL_CHILD_HINTS = { "condition", "test", "predicate", "guard" }
 local ARGUMENT_NODE_HINTS = { "argument", "arguments", "arglist", "argument_list", "call_arguments" }
+local LOOP_NODE_HINTS = { "for", "foreach", "loop" }
+local LOOP_FIELD_NAMES = {
+  "left",
+  "right",
+  "target",
+  "targets",
+  "iterator",
+  "iterable",
+  "collection",
+  "source",
+  "init",
+  "initializer",
+  "update",
+  "step",
+  "condition",
+  "test",
+  "predicate",
+  "guard",
+}
+local LOOP_CHILD_HINTS = {
+  "for_in_clause",
+  "for_clause",
+  "for_each_clause",
+  "iterable",
+  "iterator",
+  "condition",
+  "test",
+  "predicate",
+  "guard",
+  "initializer",
+  "update",
+}
 
 local function is_conditional_context(node)
   local current = node:parent()
   while current do
     local t = current:type()
+    if node_type_has_any(t, LOOP_NODE_HINTS) then
+      if in_field_subtree(node, current, LOOP_FIELD_NAMES) then
+        return true
+      end
+      for child in current:iter_children() do
+        if node_type_has_any(child:type(), LOOP_CHILD_HINTS) and is_descendant(node, child) then
+          return true
+        end
+      end
+    end
     if node_type_has_any(t, CONDITIONAL_NODE_HINTS) then
       if in_field_subtree(node, current, CONDITIONAL_FIELD_NAMES) then
         return true
